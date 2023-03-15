@@ -1,0 +1,63 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('Promart');
+
+// The drop() command destroys all data from a collection.
+// Make sure you run it against the correct database and collection.
+// db.ProductList.drop();
+
+// Insert a few documents into the sales collection.
+// db.ProductList.insertMany([
+//   {"id":1,"title":"iPhone 9","stock":94,"brand":"Apple","category":"smartphones"},
+//   {"id":2,"title":"iPhone X","stock":34,"brand":"Apple","category":"smartphones" },
+//   {"id":3,"title":"Samsung Universe 9","stock":36,"brand":"Samsung","category":"smartphones"},
+//   {"id":4,"title":"OPPOF19","stock":123,"brand":"OPPO","category":"smartphones"    },
+//   { "id":5,"title":"Huawei P30","stock":32,"brand":"Huawei","category":"smartphones"},
+//   {"id":6,"title":"MacBook Pro","stock":83,"brand":"Apple","category":"laptops"},
+//   {"id":7,"title":"Samsung Galaxy Book","stock":50,"brand":"Samsung","category":"laptops"},
+//   {"id":8,"title":"Microsoft Surface Laptop 4","stock":68,"brand":"Microsoft Surface","category":"laptops"},
+//   {"id":9,"title":"Infinix INBOOK","stock":96,"brand":"Infinix","category":"laptops"},
+//   { "id":10,"title":"HP Pavilion 15-DK1056WM","stock":89,"brand":"HP Pavilion","category":"laptops"},
+  
+
+  
+
+ 
+// ]);
+
+// Run a find command to view items sold on April 4th, 2014.
+// db.sales.find({ date: { $gte: new Date('2014-04-04'), $lt: new Date('2014-04-05') } });
+
+// Build an aggregation to view total sales for each product in 2014.
+// const aggregation = [
+//   { $match: { date: { $gte: new Date('2014-01-01'), $lt: new Date('2015-01-01') } } },
+//   { $group: { _id: '$item', totalSaleAmount: { $sum: { $multiply: [ '$price', '$quantity' ] } } } }
+// ];
+
+// Run the aggregation and open a cursor to the results.
+// Use toArray() to exhaust the cursor to return the whole result set.
+// You can use hasNext()/next() to iterate through the cursor page by page.
+// db.sales.aggregate(aggregation);
+
+// try {
+//    db.restaurant.updateOne(
+//       { "name" : "Pizza Rat's Pizzaria" },
+//       { $set: {"_id" : 4, "violations" : 7, "borough" : "Manhattan" } },
+//       { upsert: true }
+//    );
+// } catch (e) {
+//    print(e);
+// }
+
+db.getCollection('ProductList').updateMany(
+   {}, {$set: {"is_status":true }},false,true);
+
+
+
+
+   // db.getCollection('ProductList').updateMany
+   // ({}, {$rename:{"is_favourite":"is_status"}}, false, true)

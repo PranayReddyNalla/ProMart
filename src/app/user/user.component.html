@@ -1,0 +1,22 @@
+<!-- <h2 class="login">LOGIN</h2> -->
+<div class="formcontainer">
+  <form  (ngSubmit)="submission()" [formGroup]="loginform">  
+    <div>
+      
+      <p class="required" *ngIf="loginform.controls['password'].errors?.['required']">password is required</p> 
+      <p class="required" *ngIf="errormessages.passworderror">Invalid Password</p> 
+      <p class="required" *ngIf="loginform.controls['username'].errors?.['required']">Username is required</p> 
+      <p class="required" *ngIf="errormessages.usernameerror">Invalid Username</p>
+    </div>
+      <label for="username">USERNAME </label><span class="required">*</span> :
+      <input type='text' formControlName="username" id="username" />
+      <br>
+      <label for="password">PASSWORD  </label><span class="required">*</span> : 
+      
+      <input type='password' formControlName="password"  id="password" />
+      <br>
+      <a   [routerLink]="['/forgotpassword']" class="btn btn-link">forgot Password?</a>
+      <br>
+      <input type="submit" value="login" />&nbsp;
+      <a [routerLink]="['/register']" class="btn btn-link">Dont have a account? Sign Up</a>
+  </form>
