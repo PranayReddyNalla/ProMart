@@ -6,7 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { forkJoin } from 'rxjs';
 import { AddproductComponent } from '../addproduct/addproduct.component';
 import { EditproductComponent } from '../editproduct/editproduct.component';
 import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
@@ -183,20 +182,12 @@ export class ProductsComponent implements AfterViewInit {
       "password": "7777978777"
     })
 
-    forkJoin([products,favlist]).subscribe(result =>{
+    forkJoin([products,favlist]).subscribe((result : any) =>{
     this.p =result[0];
       this.f = result[1];
 
       console.log(this.p)
       console.log(this.f)
-
-      // this.p.map(e =>{
-      //  if(this.f.includes(e.id)){
-        
-
-      // }
-
-      // })
     })
     this.productsDataService.loadProductsData().subscribe((products: any) => {
       this.dataSource = new MatTableDataSource(products);
