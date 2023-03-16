@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from './products/product';
+import { UserService } from './user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class ProductsDataService {
 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private userservice : UserService
   ) { }
 
   public loadProductsData(){
@@ -40,6 +42,13 @@ export class ProductsDataService {
   return this.http.post("http://localhost:3000/getfavouriteList",user)
   
 }
+public addProductstoFavList(product:any){
+    return  this.http.post ("http://localhost:3000/addtofavouriteList",product);
+}
+public deleteProductfromFavList(favproduct:any){
+  return  this.http.post ("http://localhost:3000/removefromfavouriteList",favproduct);
 }
 
+
+}
 

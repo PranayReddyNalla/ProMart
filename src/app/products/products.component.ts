@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { forkJoin } from 'rxjs';
 import { AddproductComponent } from '../addproduct/addproduct.component';
 import { EditproductComponent } from '../editproduct/editproduct.component';
 import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
@@ -25,15 +26,36 @@ export class ProductsComponent implements AfterViewInit {
   isfav = true;
   p: any;
   f: any;
-  ds =[];
+  ds : any[] =[];
 
 
   Addfav(eleobj:any){ 
-    forkJoin  
-    eleobj.is_favourite=!eleobj.is_favourite
     console.log(eleobj)
-    this.productsDataService.updateProductsData(eleobj).subscribe((res : any)=>{
-      if(res.status="success"){
+    if(!eleobj.is_favourite){
+        this.productsDataService.addProductstoFavList(
+          {userId : this.userService.UserObject._id,
+            productId : eleobj._id}
+        ).subscribe((e : any)=>{
+          if(e.status=="success"){
+
+            eleobj.is_favourite=true;
+          }
+          else{
+            alert("already five favourites saved")
+          }
+        })
+    }
+     else{
+      this.productsDataService.deleteProductfromFavList({userid : this.userService.UserObject._id,productid : eleobj._id}).subscribe((e : any)=>{
+        console.log(e)
+        eleobj.is_favourite=false;
+      })
+
+    }
+    // eleobj.is_favourite=!eleobj.is_favourite
+    // console.log(eleobj)
+    // this.productsDataService.updateProductsData(eleobj).subscribe((res : any)=>{
+    //   if(res.status="success"){
 
       //   if(!eleobj.is_favourite){
       //  // alert('do you want add as favourite?');
@@ -44,8 +66,8 @@ export class ProductsComponent implements AfterViewInit {
     
       //   eleobj.is_favourite=false;
       //   }
-      }
-    })
+    //   }
+    // })
 
   }
   
@@ -172,27 +194,34 @@ export class ProductsComponent implements AfterViewInit {
   }
 
   ngOnInit(): void {
+    console.log(this.userService.UserObject)
     const products=this.productsDataService.loadProductsData()
-    const favlist=this.productsDataService.getfavProductsData({
-      "_id": {
-        "$oid": "63f3a0e8124d687ac8ed0d26"
-      },
-      "username": "charitha",
-      "email": "charitha@gmail.com",
-      "password": "7777978777"
-    })
+    const favlist=this.productsDataService.getfavProductsData(this.userService.UserObject)
 
     forkJoin([products,favlist]).subscribe((result : any) =>{
     this.p =result[0];
-      this.f = result[1];
+      this.f = result[1].map((e:any)=>{
+        return e.productId
+      })
+    
 
       console.log(this.p)
       console.log(this.f)
-    })
-    this.productsDataService.loadProductsData().subscribe((products: any) => {
-      this.dataSource = new MatTableDataSource(products);
+      this.p.map( (e : any) => {
+        if(this.f.includes(e._id)){
+          this.ds.push({...e,is_favourite: true})
+        }
+        else{
+          this.ds.push({...e,is_favourite: false})
+
+        }
+
+
+      })
+      console.log(this.ds)
+      this.dataSource = new MatTableDataSource(this.ds);
       this.totalLength = this.dataSource.data.length;
+    })
       // this.dataSource.paginator = this.paginator;
-    });
   }
 }

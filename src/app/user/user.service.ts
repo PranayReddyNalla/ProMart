@@ -12,6 +12,7 @@ export class UserService {
   users: Array<User>=[]
   authorized : boolean = false;
   client : any;
+  UserObject :any
 
   
 
@@ -41,7 +42,10 @@ export class UserService {
     })
   }
   getuser(){
-    this.http.get("")
+    this.http.post("http://localhost:3000/getuser",this.user).subscribe((e : any)=>{
+      this.UserObject=e
+      console.log(e)
+    })
     
   }
   async getusers(){
@@ -57,7 +61,7 @@ export class UserService {
 
   logout()
 {
-  this.user={username : " ", password : " "};
+  this.user={username : "", password : " "};
   this.authorized=false;
 }
   registeruser(userdata : any){
@@ -79,7 +83,6 @@ export class UserService {
   //   }
   Check(u : User){
     return this.http.post('http://localhost:3000/loginuser',{username : u.username,password : u. password})
-    
   }
       
   }
