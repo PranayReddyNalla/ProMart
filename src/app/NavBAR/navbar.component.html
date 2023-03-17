@@ -1,0 +1,21 @@
+<mat-toolbar >
+  <span>Promart</span>
+  
+<div class="spacer"></div>
+<a *ngIf="this.userService.authorized" mat-button routerLink="active" routerLink="/products"><mat-icon>home</mat-icon>Home</a>
+<a *ngIf="this.userService.authorized" mat-button routerLink="/products"> products</a>
+  
+<a *ngIf="this.userService.authorized" mat-button routerLink="/categories">categories</a>
+<a *ngIf="this.userService.authorized"  mat-button routerLink="/addcategories">Add Categories</a>
+<!-- <a mat-raised-button color="accent" routerLink="/login">Login</a> -->
+<a *ngIf="!this.userService.authorized" mat-raised-button color="accent" routerLink="/register">register</a>&nbsp;
+<a *ngIf="!this.userService.authorized" mat-raised-button color="warn" routerLink="/login">Login</a>
+<a *ngIf="this.userService.authorized"  mat-button ><mat-icon>person</mat-icon>{{this.userService.user.username}}</a>&nbsp;
+
+<button *ngIf="this.userService.authorized" (click)="submit($event)"  mat-raised-button color="accent" mat-button  >Logout</button>
+
+
+
+
+
+

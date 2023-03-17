@@ -1,0 +1,26 @@
+h1{
+    flex:content;
+    text-align: center;
+    justify-content: center;
+    background-color: turquoise;
+}
+
+.details{
+    font-size:medium;
+    text-align: center;
+    font-style:normal;
+    background-color: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+    
+}
+
+
+.btn{
+    
+    display: block;
+    margin: auto;
+    color:antiquewhite;
+    background-color: brown;
+    
+    /* background-color:orangered; */
+
+}

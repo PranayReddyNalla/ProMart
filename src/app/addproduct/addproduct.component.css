@@ -1,0 +1,27 @@
+form {
+    padding-top: 1rem;
+    text-align: center;
+    background: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+    
+  }
+
+  h1{
+    flex:content;
+    text-align: center;
+    justify-content: center;
+    background-color: turquoise;
+}
+  
+  label {
+    display: block;
+    margin: .5em 0;
+    text-align: center;
+    color:darkblue;
+    font-weight:normal;
+  }
+.btn{
+  display: block;
+  margin: auto;
+  background-color: turquoise;
+  
+}

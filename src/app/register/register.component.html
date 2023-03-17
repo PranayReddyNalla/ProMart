@@ -1,0 +1,16 @@
+<div class="formcontainer">
+  <form (ngSubmit)="submission()" [formGroup]="registrationform">
+     <label for="username">USERNAME:</label>
+    <input type="text" formControlName="username" id="username" /><br />
+    <p class="required" *ngIf="registrationform.controls['username'].errors?.['required']"></p> 
+    <p class="required" *ngIf="errormessage.usernameerror">ALREADY USED USERNAME</p>
+    <label for="email">EMAIL ID:</label><br />
+    <input type="text" formControlName="email" id="email" /><br />
+    <p class="required" *ngIf="registrationform.controls['email'].errors?.['required']"></p> 
+    <p class="required" *ngIf="errormessage.emailerror">ALREADY USED EMAIL</p>
+    <label for="password">PASSWORD:</label>
+    <input type="password" formControlName="password" id="password" />
+    <p class="required" *ngIf="registrationform.controls['password'].errors?.['required']"></p> 
+    <br /> <input type="submit"  />
+  </form>
+</div>

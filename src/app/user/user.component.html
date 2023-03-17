@@ -1,0 +1,15 @@
+<div class="formcontainer">
+  <form  (ngSubmit)="submission()" [formGroup]="loginform">  
+      <label for="username">USERNAME </label><span class="required">*</span> :
+      <input type='text' formControlName="username" id="username" />
+      <p class="required" *ngIf="loginform.controls['username'].errors?.['required']">error</p> 
+      <p class="required" *ngIf="errormessages.usernameerror">Incorrect Username</p> 
+      <br>
+      <label for="password">PASSWORD  </label><span class="required">*</span> : 
+      
+      <input type='password' formControlName="password"  id="password" />
+      <p class="required" *ngIf="loginform.controls['password'].errors?.['required']"></p> 
+      <p class="required" *ngIf="errormessages.passworderror">Incorrect Password</p> 
+      <br>
+      <input type="submit" />
+  </form>

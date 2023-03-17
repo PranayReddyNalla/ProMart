@@ -1,0 +1,22 @@
+
+<h1> Edit Product Details</h1>
+<form [formGroup]="EditProduct" (ngSubmit)="onSubmit()">
+    <label for="ID"> ID:  </label>
+    <input id="ID" type="text" formControlName="id" required>
+  
+    <label for="title">Title:</label>
+    <input id="title" type="text" formControlName="title" required>
+     
+    <label for="category">Category: </label>
+    <input id="category" type="text" formControlName="category" required>
+
+    <label for="Stock">Stock: </label>
+    <input id="Stock" type="text" formControlName="stock" required>
+
+    <label for="Brand">Brand: </label>
+    <input id="Brand" type="text" formControlName="brand" required>
+
+    
+    <button class="btn" type="submit">Submit</button>
+    <button class ="btn"  mat-raised-button color="warn"   (click)="Close()" >Close</button>
+</form>
