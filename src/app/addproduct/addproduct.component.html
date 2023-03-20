@@ -1,0 +1,94 @@
+<h1>Add Product</h1>
+<form [formGroup]="AddProduct" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>ID:</mat-label>
+    <input type="text" matInput placeholder="enter id" formControlName="id" />
+    <mat-error *ngIf="AddProduct.get('id')?.hasError('required')"
+      >*Required field</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Title:</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="enter Title"
+      formControlName="title"
+    />
+    <mat-error *ngIf="AddProduct.get('title')?.hasError('required')"
+      >*Required field</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Category:</mat-label>
+    <mat-select formControlName="category">
+      <mat-option value=" ">Choose Option</mat-option>
+      <mat-option
+        *ngFor="let category of categories"
+        [ngValue]="category.categoryname"
+        >{{ category.categoryname }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="AddProduct.get('category')?.hasError('required')"
+      >Please choose an Category
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Stock:</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="enter StockName"
+      formControlName="stock"
+    />
+    <mat-error *ngIf="AddProduct.get('stock')?.hasError('required')"
+      >*Required field</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Brand:</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="Brand Name"
+      formControlName="brand"
+    />
+    <mat-error *ngIf="AddProduct.get('brand')?.hasError('required')"
+      >*Required field</mat-error
+    >
+  </mat-form-field>
+
+  <!-- <label for="ID"> ID:  </label>
+    <input id="ID" type="text" formControlName="id" placeholder="enter id" required>
+    <span style="color: red;" *ngIf="id && id.invalid && id.touched">*Required field</span>
+   <p class="required" style="color:red;" *ngIf="AddProduct.controls['id'].errors?.['required']">error</p>  -->
+
+  <!-- <label for="title">Title:</label>
+    <input id="title" type="text" formControlName="title" required>
+    
+    <span style="color: red;" *ngIf="title && title.invalid && title.touched">*Required field</span>
+    
+    <label for="category">Category: </label>
+    <select  formControlName="category"> <option value="">ChooseCategory</option>
+    <option *ngFor="let category of categories" [ngValue]="category.categoryname">{{category.categoryname}} </option> </select>
+    
+    <span style="color: red;" *ngIf="category && category.invalid && category.touched">*Required field</span>
+
+    <label for="Stock">Stock: </label>
+    <input id="Stock" type="text" formControlName="stock" required>
+    <span style="color: red;" *ngIf="stock && stock.invalid && stock.touched">*Required field</span>
+
+    <label for="Brand">Brand: </label>
+    <input id="Brand" type="text" formControlName="brand" required>
+    <span style="color: red;" *ngIf="brand && brand.invalid && brand.touched">*Required field</span> --> 
+
+  <button class="btn" [disabled]="AddProduct.invalid" type="submit">
+    Submit
+  </button>
+  <button class="btn" mat-raised-button type="button" (click)="Close()">
+    Close
+  </button>
+</form>
