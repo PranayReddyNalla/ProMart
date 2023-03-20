@@ -1,32 +1,28 @@
-// import { Component } from '@angular/core';
-// import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+ import { Component,Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+ 
 
-// @Component({
-//   selector: 'app-confirmation-dialog',
-//   templateUrl: './confirmation-dialog.component.html',
-//   styleUrls: ['./confirmation-dialog.component.css']
-// })
-// export class ConfirmationDialogComponent {
-//   @Input() title: string;
-//   @Input() message: string;
-//   @Input() btnOkText: string;
-//   @Input() btnCancelText: string;
+@Component({
+  selector: 'app-confirmation-dialog',
+  templateUrl: './confirmation-dialog.component.html',
+  styleUrls: ['./confirmation-dialog.component.css']
+})
+export class ConfirmationDialogComponent {
 
-//   constructor(private activeModal: NgbActiveModal) { }
-
-//   ngOnInit() {
-//   }
-
-//   public decline() {
-//     this.activeModal.close(false);
-//   }
-
-//   public accept() {
-//     this.activeModal.close(true);
-//   }
-
-//   public dismiss() {
-//     this.activeModal.dismiss();
-//   }
-
-// }
+message: string = "Are you sure want to delete?"
+    confirmButtonText = "Yes"
+    cancelButtonText = "Cancel"
+    constructor(@Inject(MAT_DIALOG_DATA) private data: any, private dialogRef: MatDialogRef<ConfirmationDialogComponent>) {
+        if(data){
+            this.message = data.message || this.message;
+            if (data.buttonText) {
+                this.confirmButtonText = data.buttonText.ok || this.confirmButtonText;
+                this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
+            }
+        }
+    }
+ 
+    onConfirmClick(): void {
+        this.dialogRef.close(true);
+    }
+}

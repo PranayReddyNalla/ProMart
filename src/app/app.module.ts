@@ -34,6 +34,7 @@ import { HomeComponent } from './home/home.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     CategoriesComponent,
     AddcategoriesComponent,
     UserComponent,
+    ConfirmationDialogComponent,
 
     RegisterComponent,
     ModalpopupComponent,

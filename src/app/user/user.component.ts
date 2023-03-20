@@ -27,7 +27,7 @@ export class UserComponent implements OnInit{
   }
   
   async submission(){
-    await this._userprovider.getusers();
+   
     console.log(this.loginform);
     await this._userprovider.Check(this.loginform.value).subscribe((e : any)=>{
       console.log(e)
@@ -35,6 +35,7 @@ export class UserComponent implements OnInit{
         this._userprovider.authorized=true;
         this._userprovider.user=this.loginform.value
         this._router.navigate(["home"]);
+        this._userprovider.getuser();
       }
       else{
        this.errormessages =true

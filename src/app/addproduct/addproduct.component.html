@@ -24,10 +24,10 @@
   <mat-form-field appearance="fill">
     <mat-label>Category:</mat-label>
     <mat-select formControlName="category">
-      <mat-option value=" ">Choose Option</mat-option>
+      <mat-option>Choose Option</mat-option>
       <mat-option
         *ngFor="let category of categories"
-        [ngValue]="category.categoryname"
+        [value]="category.categoryname"
         >{{ category.categoryname }}
       </mat-option>
     </mat-select>
@@ -83,7 +83,7 @@
 
     <label for="Brand">Brand: </label>
     <input id="Brand" type="text" formControlName="brand" required>
-    <span style="color: red;" *ngIf="brand && brand.invalid && brand.touched">*Required field</span> --> 
+    <span style="color: red;" *ngIf="brand && brand.invalid && brand.touched">*Required field</span> -->
 
   <button class="btn" [disabled]="AddProduct.invalid" type="submit">
     Submit

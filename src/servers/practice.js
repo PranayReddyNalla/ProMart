@@ -42,6 +42,14 @@ app.listen(PORT, () => console.log(`Express server currently running on port ${P
       res.send({status :"success"})
     }
   })
+  app.post('/getuser', async (req , res) =>{
+    res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+    const users = database.collection('users');
+  const user=await users.findOne({username : req.body.username})
+  res.send(user)
+  }
+  )
+
   app.post('/adduser', async (req , res) =>{
     res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
     const users = database.collection('users');
@@ -189,9 +197,24 @@ app.listen(PORT, () => console.log(`Express server currently running on port ${P
 
     app.post('/getfavouriteList', async (request, response) => {
     console.log(request.body._id)
-    const list= await database.collection("Favourite Products").find({userId : new ObjectId(request.body._id.$oid)}).toArray();
+
+    const list= await database.collection("Favourite Products").find({userId : request.body._id}).toArray();
     response.send(list)
   })
+
+  app.post('/addtofavouriteList', async (request, response) => {
+    response.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+     database.collection("Favourite Products").insertOne(request.body)
+     response.send({status : "success"})
+
+  })
+
+  app.post('/removefromfavouriteList', (request, response) => {
+    response.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+    database.collection("Favourite Products").deleteOne({})
+   response.send({status : "success"})
+ })
+   
   
   // app.post('/getfavList',async(request,response)=>{
   //   favlist=[]
@@ -202,5 +225,3 @@ app.listen(PORT, () => console.log(`Express server currently running on port ${P
 
   //   response.send(favlist)
   //   })
-
-

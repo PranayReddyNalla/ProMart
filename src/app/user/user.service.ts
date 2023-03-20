@@ -12,6 +12,7 @@ export class UserService {
   users: Array<User>=[]
   authorized : boolean = false;
   client : any;
+  UserObject:any
 
   
 
@@ -41,8 +42,10 @@ export class UserService {
     })
   }
   getuser(){
-    this.http.get("")
-    
+    this.http.post("http://localhost:3000/getuser",this.user).subscribe((e : any)=>{
+      this.UserObject=e
+      console.log(e)
+    })
   }
   async getusers(){
     // await this.registeruser().subscribe((data: any)=>{
