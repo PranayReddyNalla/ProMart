@@ -35,7 +35,6 @@ export class HomeComponent {
         }
   })
   console.log(this.favproductsdata)
-
 })
   }
 }
