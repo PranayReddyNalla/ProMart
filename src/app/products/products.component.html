@@ -3,8 +3,8 @@
   <h1  id="header">Products List</h1>
   
   <button mat-button (click)="addrow(element)" class="btn1">Add Product</button>
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter">
+  <mat-form-field class="filter" >
+    <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter Products">
   </mat-form-field>
   <!-- <button mat-button class="btn1">Delete All</button> -->
 
