@@ -7,11 +7,9 @@
   }
 #header{
   text-align:left;
-  
-
-    
-    margin-top: 25px;
-    color: black;
+  margin-left: 25px;
+  margin-top: 25px;
+  color: rgb(27, 35, 183);
   }
   
   .red{
@@ -33,6 +31,7 @@
     cursor: pointer;
     border-radius: 8px;
     margin-top: 15px;
+    margin-right: 20px;
   }
   /* Remove extra left and right margins, due to padding in columns */
   .row {margin: 0 -5px;}
@@ -100,7 +99,11 @@
       display: block;
       margin-bottom: 20px;
     }
-
-    
-
   }
+.filter{
+  
+  margin-left: 500px;
+  
+
+  
+}
