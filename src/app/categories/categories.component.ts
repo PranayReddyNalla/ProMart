@@ -6,6 +6,7 @@ import { ProductsDataService } from '../products-data.service';
 import { HttpClient } from '@angular/common/http';
 import { GridOptions } from 'ag-grid-community';
 import { EditSettingsModel, ToolbarItems } from '@syncfusion/ej2-angular-grids';
+import { CategoryproviderService } from './categoryprovider.service';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -68,8 +69,7 @@ export class CategoriesComponent implements OnInit {
   public toolbar: ToolbarItems[] = [];
   public editType: 'fullRow' = 'fullRow';
   constructor(
-    private http: HttpClient,
-    private productsService: ProductsDataService
+    private categoryservice: CategoryproviderService
   ) {}
   ngOnInit(): void {
     this.onGridReady();
@@ -81,17 +81,17 @@ export class CategoriesComponent implements OnInit {
     };
     
     this.toolbar = ['Add',  'Delete', 'Edit', 'Cancel'];
-    this.gridOptions.defaultColDef={width:100, editable: function(_params) { 
-      return ( true);
+    this.gridOptions.defaultColDef={width:100, editable:function(_params){ 
+      return( true);
     },
-   }
+  }
   
     this.gridOptions.singleClickEdit=false;
 
   }
 
   onGridReady() {
-    this.productsService.loadProductsData().subscribe((products: any) => {
+    this.categoryservice.loadProductsData().subscribe((products: any) => {
       this.rowData = products.products;
       
       console.log(this.rowData);

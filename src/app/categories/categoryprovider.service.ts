@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Category } from '../addcategories/categories';
 
@@ -5,13 +6,12 @@ import { Category } from '../addcategories/categories';
   providedIn: 'root'
 })
 export class CategoryproviderService {
-  Categories : Array<Category>=[];
-  constructor() { }
-
+  constructor(private http : HttpClient){}
   getCategories(){
-    return this.Categories;
+    return this.http.get("http://localhost/3000/getcategoryList")
   }
-  addcategory(c: Category){
-    this.Categories.push(c);
-  }
+  public loadProductsData(){
+     return this.http.get("https://dummyjson.com/products")
+
+}
 }
