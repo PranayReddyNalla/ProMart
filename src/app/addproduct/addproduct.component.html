@@ -1,6 +1,6 @@
 <h1>Add Product</h1>
 <form [formGroup]="AddProduct" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>ID:</mat-label>
     <input type="text" matInput placeholder="enter id" formControlName="id" />
     <mat-error *ngIf="AddProduct.get('id')?.hasError('required')"
@@ -8,20 +8,22 @@
     >
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+
+  <mat-form-field appearance="outline" >
     <mat-label>Title:</mat-label>
     <input
-      type="text"
-      matInput
-      placeholder="enter Title"
-      formControlName="title"
+    type="text"
+    matInput
+    placeholder="enter Title"
+    formControlName="title"
     />
     <mat-error *ngIf="AddProduct.get('title')?.hasError('required')"
-      >*Required field</mat-error
+    >*Required field</mat-error
     >
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+
+  <mat-form-field appearance="outline">
     <mat-label>Category::</mat-label>
     
     <mat-select formControlName="category">
@@ -36,7 +38,11 @@
       >Please choose an Category
     </mat-error>
   </mat-form-field>
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Stock:</mat-label>
     <input
       type="text"
@@ -49,7 +55,7 @@
     >
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>Brand:</mat-label>
     <input
       type="text"
@@ -86,10 +92,12 @@
     <input id="Brand" type="text" formControlName="brand" required>
     <span style="color: red;" *ngIf="brand && brand.invalid && brand.touched">*Required field</span> -->
 
-  <button class="btn" [disabled]="AddProduct.invalid" type="submit">
-    Submit
-  </button>
-  <button class="btn" mat-raised-button type="button" (click)="Close()">
-    Close
-  </button>
+  <div class="btn">
+    <button  mat-raised-button [disabled]="AddProduct.invalid" type="submit">
+      Submit
+    </button>&nbsp;&nbsp;
+    <button  mat-raised-button style="background-color:turquoise" type="button" (click)="Close()">
+      Close
+    </button>
+  </div>
 </form>

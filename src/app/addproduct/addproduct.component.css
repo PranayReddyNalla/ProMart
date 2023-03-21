@@ -9,7 +9,7 @@ form {
     flex:content;
     text-align: center;
     justify-content: center;
-    background-color: turquoise;
+    
 }
   
   label {
@@ -23,4 +23,8 @@ form {
   display: block;
   margin: auto;
   
+}
+mat-form-field{
+  height:fit-content;
+  width: fit-content;
 }
