@@ -1,17 +1,16 @@
-<div *ngIf="this.userService.authorized">
 
-  
-  <!-- <table class="categorytable">
+
+<!-- <table class="categorytable">
         <tr>
-             <th>category Name </th> 
+             <th>category Name </th>
              <th>Category Code</th>
              <th>Category description</th>
              <th>Image</th>
              <th>CreatedBy</th>
              <th>CreatedOn</th>
-            </tr>
-            <tr *ngFor="let some of categories">
-              <td><a [routerLink]="['/category',some.categoryid]">{{some.categoryname}}</a></td>
+        </tr>
+        <tr *ngFor="let some of categories">
+             <td><a [routerLink]="['/category',some.categoryid]">{{some.categoryname}}</a></td>
              <td>{{some.categoryid}}</td>
              <td>{{some.categorydescription}}</td>
              <td><img [src]="getImageUrl(some.categoryimage)" height="100px" width="100px"></td>
@@ -19,67 +18,43 @@
              <td>{{some.createdOn}}</td>
         </tr>
    </table> -->
-   <!-- <title>Products List</title> -->
-   <!-- {{product.title }}
+   <h2 class="head">List of categories</h2> 
+    <!-- {{product.title }}
     {{product.category}} -->
     <div class="row" style="margin-right: 20px; margin-bottom: 10px;">
-      <!-- <div class = "card">
+        <!-- <div class = "card">
           <div class="container">
-            <div class="" > Title : {{product.id}}. {{product.title }}</div>
+          <div class="" > Title : {{product.id}}. {{product.title }}</div>
             <div class=""><label>category</label> : {{product.category}}</div>
-            <p class=""><label>description</label>: {{product.description}}</p>
-            <div class=""><label>rating</label>: {{product.rating}}</div>
-            <div class=""><label>stock</label>: {{product.stock}}</div>
-            <div class=""><label>brand</label>: <b>{{product.brand}}</b></div>
+          <p class=""><label>description</label>: {{product.description}}</p>
+          <div class=""><label>rating</label>: {{product.rating}}</div>
+          <div class=""><label>stock</label>: {{product.stock}}</div>
+          <div class=""><label>brand</label>: <b>{{product.brand}}</b></div>
           </div>
         </div> -->
-        
-        <table mat-table [dataSource]="categories" class="mat-elevation-z8">
-          
-          <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-        
-          <!-- Position Column -->
+
+       <!-- Button to clear selection -->
 
 
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>Code</th>
-            <td mat-cell *matCellDef="let element"> {{element.categorycode}} </td>
-          </ng-container>
-          
-          
-          <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef>Name</th>
-            <td mat-cell *matCellDef="let element"><a [routerLink]="['/category',element.categoryid]">{{element.categoryname}}</a>  </td>
-          </ng-container>
-          
-          <!-- Name Column -->
-          <ng-container matColumnDef="category">
-            <th mat-header-cell *matHeaderCellDef>Description</th>
-            <td mat-cell *matCellDef="let element"> {{element.categorydescription}} </td>
-          </ng-container>
-          
-          <!-- Weight Column -->
-          <ng-container matColumnDef="stock">
-            <th mat-header-cell *matHeaderCellDef>CreatedBy</th>
-            <td mat-cell *matCellDef="let element"> {{element.createdby}} </td>
-          </ng-container>
-          
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="brand">
-            <th mat-header-cell *matHeaderCellDef>CreatedON</th>
-            <td mat-cell *matCellDef="let element"> {{element.createdon}} </td>
-          </ng-container>
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef>Actions</th>
-            <td mat-cell *matCellDef="let element"><a mat-button [routerLink]="['/updatecategory',element.categoryid]">EDIT</a>
-              <button (click)="delete(element)" mat-button  >DELETE</button></td>
-            </ng-container>
-            <tr class="tblheader" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr class="tbl" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+&nbsp;&nbsp;<span *ngFor="let data of toolbar">
+     <button   class="one"  (click)="onSelection(data)">{{data}}</button>&nbsp;&nbsp;&nbsp;
+</span>
 
-   
-      </div>
 
-    </div>
+<!-- AG Grid Angular Component -->
+<ag-grid-angular
+#agGrid
+    style="width: auto; height: 85vh;"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [animateRows]="true"
+    [rowSelection]="'multiple'"
+    [editType]="editType"
+    [gridOptions]="gridOptions"
+    >
+</ag-grid-angular>
+
+</div>
+
