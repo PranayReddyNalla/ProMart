@@ -48,8 +48,8 @@ export class ProductsComponent implements AfterViewInit {
         ).subscribe((e : any)=>{
           console.log(e)
           if(e.status=="success"){
-
-            eleobj.is_favourite=true;
+            this.Reload()
+            
           }
         })
       }
@@ -197,8 +197,11 @@ export class ProductsComponent implements AfterViewInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+  ngOnInit(){
+    this.Reload();
+  }
 
-  ngOnInit(): void {
+  Reload(): void {
     console.log(this.userService.UserObject)
     const products=this.productsDataService.loadProductsData()
     const favlist=this.productsDataService.getfavProductsData(this.userService.UserObject)
