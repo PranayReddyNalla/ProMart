@@ -1,12 +1,12 @@
 <h1>Add Product</h1>
 <form [formGroup]="AddProduct" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="outline">
+  <!-- <mat-form-field appearance="standard">
     <mat-label>ID:</mat-label>
     <input type="text" matInput placeholder="enter id" formControlName="id" />
     <mat-error *ngIf="AddProduct.get('id')?.hasError('required')"
       >*Required field</mat-error
     >
-  </mat-form-field>
+  </mat-form-field> -->
 
 
   <mat-form-field appearance="outline" >

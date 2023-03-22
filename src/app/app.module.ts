@@ -35,7 +35,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-
+import { AgGridModule } from 'ag-grid-angular';
+import { GridModule, EditService, ToolbarService, SortService, PageService } from '@syncfusion/ej2-angular-grids';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,9 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     MatCardModule,
     MatGridListModule,
     MatPaginatorModule,
+    AgGridModule,
+    GridModule,
+    
     RouterModule.forRoot([
       {
         path: 'register',
@@ -86,7 +90,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
       },
     ]),
   ],
-  providers: [],
+  providers: [EditService,ToolbarService, SortService, PageService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
