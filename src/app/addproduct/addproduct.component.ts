@@ -43,7 +43,7 @@ export class AddproductComponent {
     id: ['', Validators.required],
     title: ['', Validators.required],
     category: ['', Validators.required],
-    stock: ['', Validators.required],
+    stock: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
     brand: ['', Validators.required],
     
     

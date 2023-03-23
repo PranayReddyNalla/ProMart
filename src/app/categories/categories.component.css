@@ -4,10 +4,11 @@
     width: 100%;
   }
   .head{
-    text-align: center;
-    background-color: rgb(214, 57, 14);
+    margin-left: 25px;
+
+    
     margin-top: 25px;
-    color: hwb(0 87% 13%);
+    color:black;
   }
   
   .categorytable td, #customers th {

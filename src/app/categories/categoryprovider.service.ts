@@ -8,7 +8,7 @@ import { Category } from '../addcategories/categories';
 export class CategoryproviderService {
   constructor(private http : HttpClient){}
   getCategories(){
-    return this.http.get("http://localhost/3000/getcategoryList")
+    return this.http.get("http://localhost:3000/getcategoryList")
   }
   public loadProductsData(){
      return this.http.get("https://dummyjson.com/products")
