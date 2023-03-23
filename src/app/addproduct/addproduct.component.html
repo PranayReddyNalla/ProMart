@@ -1,4 +1,4 @@
-<h1>Add Product</h1>
+<h1 class="header">ADD PRODUCTS</h1>
 <form [formGroup]="AddProduct" (ngSubmit)="onSubmit()">
   <!-- <mat-form-field appearance="standard">
     <mat-label>ID:</mat-label>
@@ -18,13 +18,13 @@
     formControlName="title"
     />
     <mat-error *ngIf="AddProduct.get('title')?.hasError('required')"
-    >*Required field</mat-error
+    >Required field</mat-error
     >
   </mat-form-field>
 
 
   <mat-form-field appearance="outline">
-    <mat-label>Category::</mat-label>
+    <mat-label>Category:</mat-label>
     
     <mat-select formControlName="category">
       <mat-option>Choose Options</mat-option>
@@ -47,12 +47,11 @@
     <input
       type="text"
       matInput
-      placeholder="enter StockName"
+      placeholder=""
       formControlName="stock"
     />
-    <mat-error *ngIf="AddProduct.get('stock')?.hasError('required')"
-      >*Required field</mat-error
-    >
+    <mat-error *ngIf="AddProduct.get('stock')?.hasError('required')">*Required field</mat-error>
+    <mat-error *ngIf="AddProduct.get('stock')?.hasError('pattern')">*value must be Numeric</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
@@ -96,8 +95,7 @@
     <button  mat-raised-button [disabled]="AddProduct.invalid" type="submit">
       Submit
     </button>&nbsp;&nbsp;
-    <button  mat-raised-button style="background-color:turquoise" type="button" (click)="Close()">
-      Close
+    <button  mat-raised-button type="button" (click)="Close()"> Close
     </button>
   </div>
 </form>

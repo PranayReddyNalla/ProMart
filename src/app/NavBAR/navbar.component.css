@@ -6,7 +6,16 @@
   text-decoration-color:turquoise;
   text-decoration-thickness: 3px;
 }
-  .spacer {
-    flex: 1 1 auto;
-  }
+.spacer 
+{
+   flex: 1 1 auto;
+   
+}
+.title{
+  font-family:  'Open Sans Regular';
+  margin-left: 10px;
+  /* font-weight: bold; */
+}
+
+
   
