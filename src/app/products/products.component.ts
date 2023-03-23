@@ -118,7 +118,7 @@ export class ProductsComponent implements AfterViewInit {
     });
   }
   addrow(x: any) {
-    this.matdialog.open(AddproductComponent, { width: '23%', height: '75%' });
+    this.matdialog.open(AddproductComponent, { width: '23%', height: '95%' });
   }
 
 //   removeSelectedRows() {
