@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "postinstall": "ngcc",
-    "start": "ng serve --proxyconfig.json",
+    "start": "ng serve ",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
