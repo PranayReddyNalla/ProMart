@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit{
+  hide = true;
 
   loginform!: FormGroup;
   errormessages = false;

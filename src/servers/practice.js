@@ -85,25 +85,13 @@ app.listen(PORT, () => console.log(`Express server currently running on port ${P
   
   app.post('/updateProduct', (req , res) =>{
     res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
-    const ProdList= database.collection('ProductList');
-    console.log(req.body)
-
+    const users = database.collection('ProductList');
     try
     {
-      ProdList.updateOne
+      users.updateOne
       (
-        { title :req.body.title},
-        {$set:{
-          
-          id : req.body.id,
-          title : req.body.title,
-          category : req.body.category,
-          stock : req.body.stock,
-          brand: req.body.brand,
-          is_favourite: req.body.is_favourite,
-
-
-        }},
+        {id :req.body._id},
+        {$set:req.body},
         { upsert: true }
       );
     } 
@@ -113,6 +101,7 @@ app.listen(PORT, () => console.log(`Express server currently running on port ${P
     res.send({ status : "success"})
   })
 
+  
   app.post('/deleteProductList', (req , res) =>{
     res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
     console.log(req.body)
@@ -148,7 +137,7 @@ app.listen(PORT, () => console.log(`Express server currently running on port ${P
     res.send({ status : "success"})
     }
     else{
-      res.send({status : "CodeIsNotUnique"})
+      res.send({status : "CodeIsNountique"})
     }
   })
 

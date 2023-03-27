@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "postinstall": "ngcc",
+    "nodemon": "nodemon practice.js",
     "start": "ng serve --proxyconfig.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
@@ -28,6 +29,8 @@
     "@progress/kendo-licensing": "^1.0.2",
     "@progress/kendo-theme-default": "^6.1.0",
     "@syncfusion/ej2-angular-grids": "^21.1.35",
+    "ag-grid-angular": "^29.2.0",
+    "ag-grid-community": "^29.2.0",
     "express": "^4.18.2",
     "mongodb": "^5.0.1",
     "mongoose": "^6.9.1",
@@ -46,6 +49,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "nodemon": "^2.0.22",
     "typescript": "~4.9.4"
   }
 }

@@ -5,11 +5,12 @@ form {
     
   }
 
-.header{
-    flex:content;
+.head{
+    font-size: larger;
     text-align: center;
-    justify-content: center;
-    font-family:  'Open Sans Regular';
+    
+    font-family:'Segoe UI';
+    
 }
   
   label {
@@ -26,6 +27,15 @@ form {
   
 }
 mat-form-field{
-  height:fit-content;
-  width: fit-content;
+  /* height:auto; */
+  /* height: 50%; */
+  width: 85%;
+  /* border: 1px solid black; */
+  
 }
+
+ ::ng-deep .mat-form-field-appearance-outline {
+    transform: translateY(0.1em) scale(.85);
+    border-radius: 200px;
+
+} 

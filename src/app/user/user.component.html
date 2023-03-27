@@ -21,32 +21,62 @@
       <a [routerLink]="['/register']" class="btn btn-link">Dont have a account? Sign Up</a>
   </form> -->
 
-  
-  <mat-card>
-    <mat-card-content>
-      <form [formGroup]="loginform" (ngSubmit)="submission()">
-        <h2>Log In</h2>
-        <mat-error  *ngIf="errormessages">Invalid Username or Password </mat-error>
-        <mat-form-field appearance="fill">
-          <mat-label>Username</mat-label>
-          <input matInput placeholder="Username"  formControlName="username"  required>
-          <mat-error *ngIf="loginform.get('username')?.hasError('required')">*Required field</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" placeholder="Password"  required>
-          
-          <mat-error  *ngIf="loginform.get('password')?.hasError('required')">*Required field </mat-error>
-        </mat-form-field>
-        <div class="link">
-         <mat-button  [routerLink]="['/forgotpassword']">forgot Password?</mat-button> 
-        </div>
-        <br>
-        <button type="submit" value="login"  mat-raised-button color="primary" >Login</button>&nbsp;
-        <br>
-        <p>Don't have a Account?</p>
-        <a [routerLink]="['/register']" class="btn btn-link">Sign Up</a>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="loginform" (ngSubmit)="submission()">
+      <h2>Log In</h2>
+      <mat-error *ngIf="errormessages">Invalid Username or Password </mat-error>
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          placeholder="Username"
+          formControlName="username"
+          required
+        />
+        <mat-error *ngIf="loginform.get('username')?.hasError('required')"
+          >*Required field</mat-error
+        >
+      </mat-form-field>
 
-      </form>
-    </mat-card-content>
-  </mat-card>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'"  type="password"
+        formControlName="password"
+        placeholder="Password"
+        required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginform.get('password')?.hasError('required')"
+          >*Required field
+        </mat-error>
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'" 
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+          required
+        /> -->
+
+      <!-- </mat-form-field> -->
+      <div class="link">
+        <mat-button [routerLink]="['/forgotpassword']"
+          >forgot Password?</mat-button
+        >
+      </div>
+      <br />
+      <button type="submit" value="login" mat-raised-button color="primary">
+        Login</button
+      >&nbsp;
+      <br />
+      <p>Don't have a Account?</p>
+      <a [routerLink]="['/register']" class="btn btn-link">Sign Up</a>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -4,6 +4,13 @@
   
   <button mat-button (click)="addrow(element)" class="btn1">Add Product</button>
   <button mat-button (click)="deletemany()" [disabled]="selecteditems.length==0" >DeleteMany</button>
+
+  <div class="btn1">
+
+    <button mat-button style="background-color:#2ba282" (click)="addrow(element)" >Add Product</button>
+    <button mat-button  [disabled]="true" >Delete Many Products</button>
+  </div>
+
   <mat-form-field class="filter" >
     <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter Products">
   </mat-form-field>
