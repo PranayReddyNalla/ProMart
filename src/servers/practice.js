@@ -104,8 +104,11 @@ app.listen(PORT, () => console.log(`Express server currently running on port ${P
   
   app.post('/deleteProductList', (req , res) =>{
     res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
-    const users = database.collection('ProductList');
-    users.deleteOne({"id" : req.body.id})
+    console.log(req.body)
+    const productlist= database.collection('ProductList');
+    productlist.updateOne({_id : new ObjectId(req.body._id)},{$set:{
+      is_status : false
+    }})
     res.send({ status : "success"})
   })
 
@@ -113,7 +116,7 @@ app.listen(PORT, () => console.log(`Express server currently running on port ${P
   app.post('/addProduct', (req , res) =>{
     res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
     const users = database.collection('ProductList');
-    users.insertOne(req.body)
+    users.insertOne({...req.body,is_status : true})
     res.send({ status : "success"})
   })
  
@@ -203,6 +206,21 @@ app.listen(PORT, () => console.log(`Express server currently running on port ${P
     database.collection("Favourite Products").deleteOne({})
    response.send({status : "success"})
  })
+
+ app.post('/d', (req , res) =>{
+
+  res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+  const arr= req.body.map(e=>{
+    return (new ObjectId(e))
+  })
+  console.log(arr)
+  const productlist= database.collection('ProductList');
+  productlist.updateMany({ _id : { $in: arr} },{$set:{
+    is_status : false
+  }})
+  res.send({ status : "success"})
+})
+  
    
   
   // app.post('/getfavList',async(request,response)=>{

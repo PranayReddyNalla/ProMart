@@ -29,10 +29,20 @@ export class ProductsComponent implements AfterViewInit {
   p: any;
   f: any;
   ds : any[] = [];
+  selecteditems : any[] = [];
+  len=0;
 
 
   
+deletemany(){
+  this.productsDataService.deletemanyfromProductList(this.selecteditems).subscribe((e: any)=>{
+    if(e.status=="success"){
+      this.Reload()
+    }
+  })
 
+
+}
   Addfav(eleobj:any){ 
     console.log(eleobj)
     if(!eleobj.is_favourite){
@@ -99,7 +109,10 @@ export class ProductsComponent implements AfterViewInit {
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
+        this.dataSource.data.forEach(row =>{
+         this.selecteditems.push(row)
+         this.selection.select(row)
+        });
   }
 
   editRow(e: any) {
@@ -142,6 +155,9 @@ export class ProductsComponent implements AfterViewInit {
     if (confirmed) {
       this.productsDataService.deleteProductData(x).subscribe((res: any) => {
         if (res.status == 'success') {
+          alert('successfully deleted');
+          this.Reload()
+
           // alert('successfully deleted');
           this.productsDataService
             .loadProductsData()
@@ -149,6 +165,7 @@ export class ProductsComponent implements AfterViewInit {
               this.dataSource = new MatTableDataSource(products);
               this.totalLength = this.dataSource.data.length;
             });
+
         }
       });
     }
@@ -210,8 +227,12 @@ export class ProductsComponent implements AfterViewInit {
       })
       console.log(this.p)
       console.log(this.f)
-      this.ds=[]
+
+
+    this.ds=[]
+
       this.p.map( (e : any) => {
+        if(e.is_status){
         if(this.f.includes(e._id)){
           this.ds.push({...e,is_favourite: true})
         }
@@ -219,14 +240,32 @@ export class ProductsComponent implements AfterViewInit {
           this.ds.push({...e,is_favourite: false})
 
         }
+      }
 
 
       })
       console.log(this.ds)
       this.dataSource = new MatTableDataSource(this.ds);
       this.totalLength = this.dataSource.data.length;
-      this.dataSource.paginator = this.paginator;
+      // this.dataSource.paginator = this.paginator;
     }
     )
   }
+
+addtoselected(event : any,element :any ){
+  console.log(event.checked)
+  if(event.checked){
+    
+    this.selecteditems.push(element._id)
+    console.log(this.selecteditems)
+
+  }
+  else{
+    const index=this.selecteditems.findIndex(e => {return (e==element)})
+    this.selecteditems.splice(index,1)
+
+  }
+  
+
+}
 }
