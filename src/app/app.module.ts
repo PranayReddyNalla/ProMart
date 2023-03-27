@@ -90,7 +90,7 @@ import { GridModule, EditService, ToolbarService, SortService, PageService } fro
       },
     ]),
   ],
-  providers: [EditService,ToolbarService, SortService, PageService],
+  providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

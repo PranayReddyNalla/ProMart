@@ -21,9 +21,10 @@ import { Product } from './product';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements AfterViewInit {
-  rowdata!: any[];
+  rowdata!: any[];;
   row: any;
   element: any;
+
   isfav = true;
   p: any;
   f: any;
@@ -75,12 +76,11 @@ export class ProductsComponent implements AfterViewInit {
 
   openpopup(e: any) {
     this.matdialog.open(ModalpopupComponent, {
-      width: '25%',
-      height: '250px',
+      width: '25%', height: '65%',
       backdropClass: 'custom-overlay',
       panelClass: 'custom-modalbox',
       data: {
-        Id: e.id,
+        Id: e._id,
         Title: e.title,
         Category: e.category,
         Stock: e.stock,
@@ -104,12 +104,11 @@ export class ProductsComponent implements AfterViewInit {
 
   editRow(e: any) {
     this.matdialog.open(EditproductComponent, {
-      width: '23%',
-      height: '75%',
-      backdropClass: 'custom-overlay',
-      panelClass: 'custom-modalbox',
+      width: '25%',
+      height: '95%',
+      
       data: {
-        id: e.id,
+
         title: e.title,
         category: e.category,
         stock: e.stock,
@@ -118,19 +117,20 @@ export class ProductsComponent implements AfterViewInit {
     });
   }
   addrow(x: any) {
-    this.matdialog.open(AddproductComponent, { width: '23%', height: '95%' });
+    this.matdialog.open(AddproductComponent, { width: '25%', height: '95%' });
   }
 
-//   removeSelectedRows() {
-//     this.selection.selected.forEach(item => {
-//      let index: number = this.data.findIndex(d => d === item);
-//      console.log(this.data.findIndex(d => d === item));
-//      this.dataSource.data.splice(index,1);
+  removeSelectedRows() {
 
-//      this.dataSource = new MatTableDataSource<Product>(this.dataSource.data);
-//    });
-//    this.selection = new SelectionModel<Product>(true, []);
-//  }
+  //   this.selection.selected.forEach(item => {
+  //    let index: number = this.data.findIndex(d => d === item);
+  //    console.log(this.data.findIndex(d => d === item));
+  //    this.dataSource.data.splice(index,1);
+
+  //    this.dataSource = new MatTableDataSource<Product>(this.dataSource.data);
+  //  });
+  //  this.selection = new SelectionModel<Product>(true, []);
+ }
 
   deleteRow(x: any) {
     const dialogRef=this.matdialog.open(ConfirmationDialogComponent,{
@@ -142,7 +142,7 @@ export class ProductsComponent implements AfterViewInit {
     if (confirmed) {
       this.productsDataService.deleteProductData(x).subscribe((res: any) => {
         if (res.status == 'success') {
-          alert('successfully deleted');
+          // alert('successfully deleted');
           this.productsDataService
             .loadProductsData()
             .subscribe((products: any) => {
@@ -156,7 +156,7 @@ export class ProductsComponent implements AfterViewInit {
   }
   displayedColumns: string[] = [
     'select',
-    'id',
+    // 'id',
     'title',
     'category',
     'stock',
@@ -164,6 +164,7 @@ export class ProductsComponent implements AfterViewInit {
     'Actions',
   ];
   data = Object.assign;
+  
   totalLength = 0;
   dataSource = new MatTableDataSource<Product>([]);
   selection = new SelectionModel<Product>(true, []);
@@ -171,12 +172,8 @@ export class ProductsComponent implements AfterViewInit {
   @ViewChild(MatSort)
   sort: MatSort = new MatSort();
 
-  constructor(
-    private productsDataService: ProductsDataService,
-    private matdialog: MatDialog,
-    private _liveAnnouncer: LiveAnnouncer,
-    public userService: UserService
-  ) { }
+  constructor(private productsDataService: ProductsDataService,private matdialog: MatDialog, 
+    private _liveAnnouncer: LiveAnnouncer,public userService: UserService) { }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -207,14 +204,13 @@ export class ProductsComponent implements AfterViewInit {
     const favlist=this.productsDataService.getfavProductsData(this.userService.UserObject)
 
     forkJoin([products,favlist]).subscribe((result : any) =>{
-    this.p =result[0];
+      this.p =result[0];
       this.f = result[1].map((e:any)=>{
-        return e.productId
+      return e.productId
       })
-    
-
       console.log(this.p)
       console.log(this.f)
+      this.ds=[]
       this.p.map( (e : any) => {
         if(this.f.includes(e._id)){
           this.ds.push({...e,is_favourite: true})

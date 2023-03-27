@@ -16,7 +16,7 @@ categories:any;
 onSubmit(){
   this.productsDataService.updateProductsData(this.EditProduct.value).subscribe((res: any)=>{
       this.productsDataService.loadProductsData().subscribe((products:any)=>{
-      
+      this.Close()
      })
     }
 
@@ -29,37 +29,34 @@ Close(){
 }
 
 EditProduct = this.fb.group({
-    id :['', Validators.required],
-    title: ['', Validators.required],
+    // id :['', Validators.required],
+    // title: ['', Validators.required],
+    // category: ['', Validators.required],
+    // stock: ['', Validators.required],
+    // brand: ['', Validators.required],
+
+    title: ['', [Validators.required,Validators.minLength(5),Validators.maxLength(15)]],
     category: ['', Validators.required],
-    stock: ['', Validators.required],
-    brand: ['', Validators.required],
+    rating:['', [Validators.required,Validators.max(5),Validators.min(1)]],
+    description: ['', Validators.required],
+    price: ['', [Validators.required,Validators.min(1)]],
+    image:['',Validators.required],
+    stock: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
+    brand: ['',[ Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+    color:['',Validators.required],
+    review:['',Validators.required],
+    vendor:['',Validators.required],
     
     
   })
 
 
-  get id(){
-    return this.EditProduct.get('id');
-  }
-  get title(){
-    return this.EditProduct.get('title');
-  }
-  get category(){
-    return this.EditProduct.get('category');
-  }
-  get stock(){
-    return this.EditProduct.get('stock');
-  }
-  get brand(){
-    return this.EditProduct.get('brand');
-  }
   ngOnInit(): void {
     this.categoryservice.getCategories().subscribe((e:any)=>{
      this.categories=e;
    } )
    console.log(this.data)
-   this.EditProduct.setValue(this.data)
+   this.EditProduct.patchValue(this.data)
  }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private Ref: MatDialogRef<EditproductComponent>,

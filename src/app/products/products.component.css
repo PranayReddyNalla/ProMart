@@ -11,10 +11,16 @@
   margin-top: 25px;
   
   }
-  
+.deletebulk{
+  margin-left: 300px;
+}
   .red{
     color:red;
   }
+  .btn2{
+    padding: 5px;
+  }
+
 
 
 
@@ -24,9 +30,9 @@
   }
   .btn1{
     font-size: small;
-    background-color: #2ba282; /* Green */
+    margin: 2px;
     color: white;
-    padding: 10px 20px;
+    padding: 5px 10px;
     float: right;
     cursor: pointer;
     border-radius: 8px;
@@ -99,6 +105,9 @@
       display: block;
       margin-bottom: 20px;
     }
+  }
+  mat-form-field{
+    width: 200px;
   }
 .filter{
   

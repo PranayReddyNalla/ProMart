@@ -33,6 +33,8 @@ export class AddproductComponent {
         this.dataSource = new MatTableDataSource(products);
 
         this.totalLength=this.dataSource.data.length;
+
+        this.Close()
        })
       }
 
@@ -40,11 +42,20 @@ export class AddproductComponent {
   }
 
   AddProduct = this.fb.group({
-    id: ['', Validators.required],
-    title: ['', Validators.required],
+    // id: ['', Validators.required],
+    title: ['', [Validators.required,Validators.minLength(5),Validators.maxLength(15)]],
     category: ['', Validators.required],
+    rating:['', [Validators.required,Validators.max(5),Validators.min(1)]],
+    description: ['', Validators.required],
+    price: ['', [Validators.required,Validators.min(1)]],
+    image:['',Validators.required],
     stock: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
-    brand: ['', Validators.required],
+    brand: ['',[ Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+    color:['',Validators.required],
+    review:['',Validators.required],
+    vendor:['',Validators.required],
+    
+
     
     
   })
