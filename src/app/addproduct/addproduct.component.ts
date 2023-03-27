@@ -48,11 +48,11 @@ export class AddproductComponent {
     rating:['', [Validators.required,Validators.max(5),Validators.min(1)]],
     description: ['', Validators.required],
     price: ['', [Validators.required,Validators.min(1)]],
-    image:['',Validators.required],
+    // image:['',Validators.required],
     stock: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
     brand: ['',[ Validators.required,Validators.pattern('[a-zA-Z ]*')]],
     color:['',Validators.required],
-    review:['',Validators.required],
+    // review:['',Validators.required],
     vendor:['',Validators.required],
     
 

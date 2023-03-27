@@ -31,7 +31,7 @@
   .btn1{
     font-size: small;
     margin: 2px;
-    color: white;
+    /* color: white; */
     padding: 5px 10px;
     float: right;
     cursor: pointer;
