@@ -15,40 +15,47 @@ import { CategoryproviderService } from './categoryprovider.service';
 export class CategoriesComponent implements OnInit {
   categories: Array<Category> = [];
   url!: String;
-  displayedColumns: string[] = [
-    'id',
-    'title',
-    'category',
-    'stock',
-    'brand',
-    'price',
-    'discountPercentage',
-  ];
+  // displayedColumns: string[] = [
+  //   'id',
+  //   'title',
+  //   'category',
+  //   'stock',
+  //   'brand',
+  //   'price',
+  //   'discountPercentage',
+  // ];
  
-  productList = [];
+  productList = []; 
   public columnDefs: ColDef[] = [
-    { headerName: 'ID', field: 'id', editable: true , checkboxSelection : true},
-    { headerName: 'Title', field: 'title',editable: true },
-    { headerName: 'Category', field: 'category', editable: true },
-    { headerName: 'Stock', field: 'stock',editable: true },
-    { headerName: 'Brand', field: 'brand',editable: true },
-    {
-      headerName: 'Price',
-      field: 'price',editable: true,
-      cellRenderer: function (params: { value: number }) {
-        return `$${params.value}`;
-      },
+    
+    { headerName: 'Category Name', field: 'categoryname',editable: true},
+    { headerName: 'Category Code', field: 'categorycode', editable: true },
+    { headerName: 'Category Description', field: 'categorydescription', editable: true },
+    { headerName: 'Created By', field: 'createdby', editable: true },
+    { headerName: 'Created On', field: 'createdon', editable: true },
+    { headerName: 'Actions', editable: true },
+
+
+
+    // { headerName: 'Stock', field: 'stock',editable: true },
+    // { headerName: 'Brand', field: 'brand',editable: true },
+    // {
+    //   headerName: 'Price',
+    //   field: 'price',editable: true,
+    //   cellRenderer: function (params: { value: number }) {
+    //     return `$${params.value}`;
+    //   },
       
-    },
+    // },
 
 
-    {
-      headerName: 'Discount',
-      field: 'discountPercentage',editable: true,
-      cellRenderer: function (params: { value: string }) {
-        return `${params.value}%`;
-      },
-    },
+    // {
+    //   headerName: 'Discount',
+    //   field: 'discountPercentage',editable: true,
+    //   cellRenderer: function (params: { value: string }) {
+    //     return `${params.value}%`;
+    //   },
+    // },
   ];
 
   public defaultColDef: ColDef = {
@@ -77,10 +84,10 @@ export class CategoriesComponent implements OnInit {
       allowEditing: true,
       allowAdding: true,
       allowDeleting: true,
-      newRowPosition: 'Bottom',
+      newRowPosition: 'Top',
     };
     
-    this.toolbar = ['Add',  'Delete', 'Edit', 'Cancel'];
+    this.toolbar = ['Add',  'Delete'];
     this.gridOptions.defaultColDef={width:100, editable:function(_params){ 
       return( true);
     },
@@ -91,8 +98,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   onGridReady() {
-    this.categoryservice.loadProductsData().subscribe((products: any) => {
-      this.rowData = products.products;
+    this.categoryservice.getCategories().subscribe((categories: any) => {
+      this.rowData = categories;
       
       console.log(this.rowData);
     });
@@ -111,18 +118,18 @@ export class CategoriesComponent implements OnInit {
     let selectedRow :any= this.getSelectedRowData();
     if (value == 'Add') {
       let data:any = {
-        id: 0,
-        brand: '',
-        category: '',
-        discountPercentage: 0,
+        _id: 0,
+       
+        categoryname: '',
+        categorycode: 0,
         title: '',
         price: 0,
         stock: '',
       };
       this.rowData.unshift(data);
-      this.rowData.forEach((ele:any)=>{
-        ele['id']=this.rowData.indexOf(ele)+1;
-      })
+      // this.rowData.forEach((ele:any)=>{
+      //   ele['id']=this.rowData.indexOf(ele)+1;
+      // })
       this.agGrid.api.setRowData(this.rowData)
       // console.log(value);
      
@@ -140,25 +147,11 @@ export class CategoriesComponent implements OnInit {
         })
         
         this.agGrid.api.setRowData(this.rowData)
-        } else {
-            console.log('cancel')
-        }
+        } 
       }
     }
-    else if (value=='Edit'){
-      if(selectedRow.length > 0){
-        let file = this.rowData.find((d:any) => d.id == selectedRow[0].id );
-        let rowInd = this.rowData.indexOf(file);
-        this.agGrid.api.startEditingCell({
-          rowIndex: rowInd,
-          colKey: 'id', 
-        })
-      }
-    }
-    else if (value== 'Cancel'){
-      this.agGrid.api.stopEditing();
-
-    }
+    
+    
   }
   getSelectedRowData() {
     const selectedData = this.agGrid.api.getSelectedRows();
