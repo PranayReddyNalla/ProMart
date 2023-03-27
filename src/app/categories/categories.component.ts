@@ -27,28 +27,11 @@ export class CategoriesComponent implements OnInit {
  
   productList = [];
   public columnDefs: ColDef[] = [
-    { headerName: 'ID', field: 'id', editable: true , checkboxSelection : true},
-    { headerName: 'Title', field: 'title',editable: true },
-    { headerName: 'Category', field: 'category', editable: true },
-    { headerName: 'Stock', field: 'stock',editable: true },
-    { headerName: 'Brand', field: 'brand',editable: true },
-    {
-      headerName: 'Price',
-      field: 'price',editable: true,
-      cellRenderer: function (params: { value: number }) {
-        return `$${params.value}`;
-      },
-      
-    },
-
-
-    {
-      headerName: 'Discount',
-      field: 'discountPercentage',editable: true,
-      cellRenderer: function (params: { value: string }) {
-        return `${params.value}%`;
-      },
-    },
+    { headerName: 'Code', field: 'categorycode', editable: true , checkboxSelection : true},
+    { headerName: 'Title', field: 'categoryname',editable: true },
+    { headerName: 'description', field: 'categorydescription', editable: true },
+    { headerName: 'CreatedBy', field: 'createdby',editable: true },
+    { headerName: 'CreatedOn', field: 'createdon',editable: true },
   ];
 
   public defaultColDef: ColDef = {
@@ -91,8 +74,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   onGridReady() {
-    this.categoryservice.loadProductsData().subscribe((products: any) => {
-      this.rowData = products.products;
+    this.categoryservice.getCategories().subscribe((categories: any) => {
+      this.rowData = categories;
       
       console.log(this.rowData);
     });
@@ -108,57 +91,56 @@ export class CategoriesComponent implements OnInit {
     };
   }
   onSelection(value: any) {
-    let selectedRow :any= this.getSelectedRowData();
-    if (value == 'Add') {
-      let data:any = {
-        id: 0,
-        brand: '',
-        category: '',
-        discountPercentage: 0,
-        title: '',
-        price: 0,
-        stock: '',
-      };
-      this.rowData.unshift(data);
-      this.rowData.forEach((ele:any)=>{
-        ele['id']=this.rowData.indexOf(ele)+1;
-      })
-      this.agGrid.api.setRowData(this.rowData)
-      // console.log(value);
+//     let selectedRow :any= this.getSelectedRowData();
+//     if (value == 'Add') {
+//       let data:any = {
+//         categoryname: "MobilePhones",
+//          categorycode: "Mob",
+//          categorydescription: "devices used to call",
+//          active: true,
+//          createdby: "pranay",
+//          createdon: ""
+//       };
+//       this.rowData.unshift(data);
+//       this.rowData.forEach((ele:any)=>{
+//         ele['id']=this.rowData.indexOf(ele)+1;
+//       })
+//       this.agGrid.api.setRowData(this.rowData)
+//       // console.log(value);
      
-    } else if (value == 'Delete') {
-      if(selectedRow.length >0){
-        let text = "deleting selected record";
-        if (confirm(text) == true) {
-          selectedRow.map((data : any)=>{
-            let deleteFile = this.rowData.find((d:any) => d.id == data.id );
-            let deleteIndex = this.rowData.indexOf(deleteFile);
-            this.rowData.splice(deleteIndex,1);
-          })
-        this.rowData.forEach((ele:any)=>{
-          ele['id']=this.rowData.indexOf(ele)+1;
-        })
+//     } else if (value == 'Delete') {
+//       if(selectedRow.length >0){
+//         let text = "deleting selected record";
+//         if (confirm(text) == true) {
+//           selectedRow.map((data : any)=>{
+//             let deleteFile = this.rowData.find((d:any) => d.id == data.id );
+//             let deleteIndex = this.rowData.indexOf(deleteFile);
+//             this.rowData.splice(deleteIndex,1);
+//           })
+//         this.rowData.forEach((ele:any)=>{
+//           ele['id']=this.rowData.indexOf(ele)+1;
+//         })
         
-        this.agGrid.api.setRowData(this.rowData)
-        } else {
-            console.log('cancel')
-        }
-      }
-    }
-    else if (value=='Edit'){
-      if(selectedRow.length > 0){
-        let file = this.rowData.find((d:any) => d.id == selectedRow[0].id );
-        let rowInd = this.rowData.indexOf(file);
-        this.agGrid.api.startEditingCell({
-          rowIndex: rowInd,
-          colKey: 'id', 
-        })
-      }
-    }
-    else if (value== 'Cancel'){
-      this.agGrid.api.stopEditing();
+//         this.agGrid.api.setRowData(this.rowData)
+//         } else {
+//             console.log('cancel')
+//         }
+//       }
+//     }
+//     else if (value=='Edit'){
+//       if(selectedRow.length > 0){
+//         let file = this.rowData.find((d:any) => d.id == selectedRow[0].id );
+//         let rowInd = this.rowData.indexOf(file);
+//         this.agGrid.api.startEditingCell({
+//           rowIndex: rowInd,
+//           colKey: 'id', 
+//         })
+//       }
+//     }
+//     else if (value== 'Cancel'){
+//       this.agGrid.api.stopEditing();
 
-    }
+//     }
   }
   getSelectedRowData() {
     const selectedData = this.agGrid.api.getSelectedRows();

@@ -61,6 +61,11 @@ public addProductstoFavList(product:any) : Observable<any> {
 public deleteProductfromFavList(favproduct:any){
   return  this.http.post ("http://localhost:3000/removefromfavouriteList",favproduct);
 }
+public deletemanyfromProductList(ProductList : any){
+  console.log(ProductList)
+  return this.http.post("http://localhost:3000/d",ProductList)
+  
+}
 }
 
 
