@@ -1,5 +1,196 @@
 <h1>Edit Product</h1>
-<form [formGroup]="EditProduct"   (ngSubmit)="onSubmit()">
+<form [formGroup]="EditProduct" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Name:</mat-label>
+    <input
+    type="text"
+    matInput
+      placeholder="Product name"
+      formControlName="title"
+    />
+    <mat-error *ngIf="EditProduct.get('title')?.hasError('required')"
+    >Required field</mat-error
+    >
+    <mat-error *ngIf="EditProduct.get('title')?.hasError('minlength')"
+    >must contain 5 characters</mat-error
+    >
+    <mat-error *ngIf="EditProduct.get('title')?.hasError('maxlength')"
+    >Exceeds characters</mat-error
+    >
+  </mat-form-field>
+
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Color:</mat-label>
+    <input type="text" matInput placeholder="color" formControlName="color" />
+    <mat-error *ngIf="EditProduct.get('color')?.hasError('required')"
+    >*Required field</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+    <mat-error *ngIf="EditProduct.get('description')?.hasError('required')"
+    >*Description must contain value</mat-error
+    >
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Category:</mat-label>
+    <mat-select formControlName="category">
+      <mat-option>Choose Options</mat-option>
+      <mat-option
+        *ngFor="let category of categories"
+        [value]="category.categoryname"
+        >{{ category.categoryname }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="EditProduct.get('category')?.hasError('required')"
+      >Please choose an Category
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Stock:</mat-label>
+    <input type="number" matInput placeholder="" formControlName="stock" />
+    <mat-error *ngIf="EditProduct.get('stock')?.hasError('required')"
+    >*Required field</mat-error
+    >
+    <mat-error *ngIf="EditProduct.get('stock')?.hasError('pattern')"
+    >*value must be Numeric</mat-error
+    >
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Brand:</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="Brand Name"
+      formControlName="brand"
+    />
+    <mat-error *ngIf="EditProduct.get('brand')?.hasError('required')"
+      >*Required field</mat-error
+      >
+      <mat-error *ngIf="EditProduct.get('brand')?.hasError('pattern')"
+    >brand name cant be Numeric</mat-error
+    >
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Rating:</mat-label>
+      <input type="number" matInput placeholder="rating" formControlName="rating" />
+      <mat-error *ngIf="EditProduct.get('rating')?.hasError('required')"
+      >*Required field</mat-error
+      >
+      <mat-error *ngIf="EditProduct.get('rating')?.hasError('min')"
+      >*Rating is from (1-5)</mat-error
+      >
+      <mat-error *ngIf="EditProduct.get('rating')?.hasError('max')"
+      >*Rating is from (1-5)</mat-error
+      >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>vendor</mat-label>
+    <input type="text" matInput placeholder="vendor Name " formControlName="vendor" />
+    <mat-error *ngIf="EditProduct.get('vendor')?.hasError('required')"
+    >*Required field</mat-error
+    >
+</mat-form-field>
+  
+  <mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>Price</mat-label>
+    <input
+    matInput
+    type="number"
+    class="example-right-align"
+      placeholder="0"
+      formControlName="price"
+    />
+    <span matTextPrefix>$&nbsp;</span>
+    <span matTextSuffix>.00</span>
+    <mat-error *ngIf="EditProduct.get('price')?.hasError('required')"
+      >*Required field</mat-error
+      >
+      <mat-error *ngIf="EditProduct.get('price')?.hasError('min')"
+      >Price cant be zero</mat-error
+      >
+  </mat-form-field>
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>ID:</mat-label>
+    <input type="text" matInput placeholder="enter id" formControlName="id" />
+    <mat-error *ngIf="EditProduct.get('id')?.hasError('required')"
+      >*Required field</mat-error
+    >
+  </mat-form-field> -->
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>Title:</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="enter Title"
+      formControlName="title"
+    />
+    <mat-error *ngIf="EditProduct.get('title')?.hasError('required')"
+      >Required field</mat-error
+    >
+  </mat-form-field> -->
+
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>Category:</mat-label>
+
+    <mat-select formControlName="category">
+      <mat-option>Choose Options</mat-option>
+      <mat-option
+        *ngFor="let category of categories"
+        [value]="category.categoryname"
+        >{{ category.categoryname }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="EditProduct.get('category')?.hasError('required')"
+      >Please choose an Category
+    </mat-error>
+  </mat-form-field> -->
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field> -->
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>Stock:</mat-label>
+    <input type="text" matInput placeholder="" formControlName="stock" />
+    <mat-error *ngIf="EditProduct.get('stock')?.hasError('required')"
+      >*Required field</mat-error
+    >
+    <mat-error *ngIf="EditProduct.get('stock')?.hasError('pattern')"
+      >*value must be Numeric</mat-error
+    >
+  </mat-form-field> -->
+
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>Brand:</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="Brand Name"
+      formControlName="brand"
+    />
+    <mat-error *ngIf="EditProduct.get('brand')?.hasError('required')"
+      >*Required field</mat-error
+    >
+  </mat-form-field> -->
+
+  <div class="btn">
+    <button mat-raised-button [disabled]="EditProduct.invalid" type="submit">
+      Submit</button
+    >&nbsp;&nbsp;
+    <button mat-raised-button color="warn" type="button" (click)="Close()">
+      Close
+    </button>
+  </div>
+</form>
+
+<!-- 
     <label for="ID"> ID:  </label>
     <input id="ID" type="text" formControlName="id" placeholder="enter id" required>
     <span style="color: red;" *ngIf="id && id.invalid && id.touched">*Required field</span>
@@ -21,8 +212,4 @@
 
     <label for="Brand">Brand: </label>
     <input id="Brand" type="text" formControlName="brand" required>
-    <span style="color: red;" *ngIf="brand && brand.invalid && brand.touched">*Required field</span>
-
-    
-    <button class="btn" [disabled]="EditProduct.invalid" type="submit">Submit</button>
-    <button class ="btn"  mat-raised-button  type="button"  (click)="Close()" >Close</button>
+    <span style="color: red;" *ngIf="brand && brand.invalid && brand.touched">*Required field</span> -->

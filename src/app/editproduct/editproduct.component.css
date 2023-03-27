@@ -1,19 +1,20 @@
 form {
     padding-top: 1rem;
     text-align: center;
+    font-family: Roboto ;
     /* html,body{
       display: grid;
       height: 100%;
       width: 100%;
       place-items: center; */
-      background: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+     
     
   }
   h1{
     flex:content;
     text-align: center;
     justify-content: center;
-    background-color: turquoise;
+    
 }
   
   label {
@@ -28,3 +29,8 @@ form {
   margin: auto;
   
 }
+::ng-deep .mat-form-field-appearance-outline {
+  transform: translateY(0.1em) scale(.95);
+  /* border-radius: 200px; */
+
+} 
