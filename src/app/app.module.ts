@@ -37,6 +37,8 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { GridModule, EditService, ToolbarService, SortService, PageService } from '@syncfusion/ej2-angular-grids';
+import { MycategoriesrendererComponent } from './mycategoriesrenderer/mycategoriesrenderer.component';
+import { MessageBoxComponent } from './message-box/message-box.component';
 
 @NgModule({
   declarations: [
@@ -47,13 +49,14 @@ import { GridModule, EditService, ToolbarService, SortService, PageService } fro
     AddcategoriesComponent,
     UserComponent,
     ConfirmationDialogComponent,
-
     RegisterComponent,
     ModalpopupComponent,
     AddproductComponent,
     EditproductComponent,
     HomeComponent,
     ForgotpasswordComponent,
+    MycategoriesrendererComponent,
+    MessageBoxComponent,
   ],
   imports: [
     BrowserModule,

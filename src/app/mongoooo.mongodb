@@ -6,28 +6,76 @@
 // Select the database to use.
 use('Promart');
 
+// db.ProductList.aggregate
+// ( [
+//    {
+//            $addField: {
+//               "is_status": true
+//            }
+//   }
+// ] )
+
+
 // The drop() command destroys all data from a collection.
 // Make sure you run it against the correct database and collection.
 // db.ProductList.drop();
 
 // Insert a few documents into the sales collection.
 // db.ProductList.insertMany([
-//   {"id":1,"title":"iPhone 9","stock":94,"brand":"Apple","category":"smartphones"},
-//   {"id":2,"title":"iPhone X","stock":34,"brand":"Apple","category":"smartphones" },
-//   {"id":3,"title":"Samsung Universe 9","stock":36,"brand":"Samsung","category":"smartphones"},
-//   {"id":4,"title":"OPPOF19","stock":123,"brand":"OPPO","category":"smartphones"    },
-//   { "id":5,"title":"Huawei P30","stock":32,"brand":"Huawei","category":"smartphones"},
-//   {"id":6,"title":"MacBook Pro","stock":83,"brand":"Apple","category":"laptops"},
-//   {"id":7,"title":"Samsung Galaxy Book","stock":50,"brand":"Samsung","category":"laptops"},
-//   {"id":8,"title":"Microsoft Surface Laptop 4","stock":68,"brand":"Microsoft Surface","category":"laptops"},
-//   {"id":9,"title":"Infinix INBOOK","stock":96,"brand":"Infinix","category":"laptops"},
-//   { "id":10,"title":"HP Pavilion 15-DK1056WM","stock":89,"brand":"HP Pavilion","category":"laptops"},
+//   {"title":"iPhone 9","stock":94,"brand":"Apple","category":"smartphones", },
+//   {"title":"iPhone X","stock":34,"brand":"Apple","category":"smartphones" },
+//   {"title":"Samsung Universe 9","stock":36,"brand":"Samsung","category":"smartphones"},
+//   {"title":"OPPOF19","stock":123,"brand":"OPPO","category":"smartphones"    },
+//   { "title":"Huawei P30","stock":32,"brand":"Huawei","category":"smartphones"},
+//   {"title":"MacBook Pro","stock":83,"brand":"Apple","category":"laptops"},
+//   {"title":"Samsung Galaxy Book","stock":50,"brand":"Samsung","category":"laptops"},
+//   {"title":"Microsoft Surface Laptop 4","stock":68,"brand":"Microsoft Surface","category":"laptops"},
+//   {"title":"Infinix INBOOK","stock":96,"brand":"Infinix","category":"laptops"},
+//   {"title":"HP Pavilion 15-DK1056WM","stock":89,"brand":"HP Pavilion","category":"laptops"},
   
 
   
 
  
 // ]);
+
+// db.ProductList.insertMany([
+//   {"title": "Huawei MateBook X Pro", "image": "huawei-matebook-pro.jpg",
+//    "specs": "Intel Core i7, 8th generation ,8GB Ram ,512 GB SSD ,13.9-inch, 3K (3,000 x 2,080)","price": "1499",
+//    "description": "This is a gorgeous and it comes packed with cutting edge components that allows it to perform brilliantly, and a battery life that runs rings around many of its rivals. It also has a very competitive price, giving you features, design and performance for quite a bit less money.",
+//    "stock":33,"brand":"Huawei","category":"Laptops","rating":"3.7"},
+//   {"title": "Samsung Notebook 9",
+//   "image": "samsung-notebook-9.jpg",
+//   "specs": "Intel Core i7, 8th generation ,8GB Ram ,512 GB SSD ,13.9-inch, 3K (3,000 x 2,080)",
+//   "price": "1799",
+//   "description": "While it may not have the best keyboard in the world, the Samsung Notebook 9 is still one of the best laptops you can buy",
+//    "stock":93,"brand":"Huawei","category":"Laptops","rating":"4.7"},
+//    {"title": " Apple Macbook Pro 2018",
+//   "image": "macbook-pro-15.jpg",
+//   "specs": "Intel Core i7, 8th generation ,8GB Ram ,512 GB SSD ,15.9-inch, ",
+//   "price": "3199",
+//   "description": "If you're after the latest and greatest laptop from Apple, we suggest you look into the 2018 model of the 15-inch MacBook Pro with Touch Bar. The headline Touch Bar – a thin OLED display at the top of the keyboard which can be used for any number of things, whether that be auto-suggesting words as you type or offering Touch ID so you can log in with just your fingerprint  is of course included. It's certainly retained Apple's sense of style, but it comes at a cost.",
+//    "stock":"69","brand":"Apple","category":"Laptops","rating":"5","is_status":true},
+
+//    {"title": "Asus ZenBook Flip S",
+//   "image": "asus-zenbook-flip-s.jpg",
+//   "specs": "Intel Core i7, 8th generation ,8GB Ram ,512 GB SSD ,13.3-inch, Full HD touchscreen",
+//   "price": "1599",
+//   "description": "Asus has struck gold with its new refresh of its ZenBook Flip S 2-in-1 laptop. With a new Kaby Lake R 8th-generation processor powering the device, plenty of RAM and a super-fast PCIe SSD in certain models, this is an absolutely stunning laptop. Its 2-in-1 design means you can use it as both a laptop and a tablet",
+//    "stock":"1009","brand":"Asus","category":"Laptops","rating":"3.5","is_status":true},
+//    {"title": "Dell XPS 13",
+//   "image": "dell-xps-13.png",
+//   "specs": "Intel Core i7, 8th generation ,8GB Ram ,512 GB SSD ,13.3-inch, Full HD",
+//   "price": "1199",
+//   "description": "The Dell XPS 13 is an absolutely brilliant laptop. The 2018 version rocks an 8th-generation Intel Core i5 or i7 processor and a bezel-less ‘Infinity Edge’ display, this Dell XPS 13 continues to be the most popular Windows laptop in the world. What’s more, there’s a wide range of customization options, so you can really make the Dell XPS 13 the best laptop for your needs. ",
+//    "stock":"2909","brand":"Dell","category":"Laptops","rating":"3","is_status":true},
+
+
+
+
+
+
+// ])
 
 // Run a find command to view items sold on April 4th, 2014.
 // db.sales.find({ date: { $gte: new Date('2014-04-04'), $lt: new Date('2014-04-05') } });
@@ -61,3 +109,4 @@ db.getCollection('ProductList').updateMany(
 
    // db.getCollection('ProductList').updateMany
    // ({}, {$rename:{"is_favourite":"is_status"}}, false, true)
+
