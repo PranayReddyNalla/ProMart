@@ -9,9 +9,8 @@ body { margin: 0; font-family:  'Open Sans Regular' }
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 .active{
-   
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-    text-decoration-color:turquoise;
-    text-decoration-thickness: 3px;
+  text-decoration-line:underline;
+  text-decoration-style: solid;
+  text-decoration-color:teal;
+  text-decoration-thickness: 5px;
   }

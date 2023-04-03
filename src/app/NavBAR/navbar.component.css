@@ -1,10 +1,10 @@
 
 .active{
-   
-  text-decoration-line: underline;
+   /* background-color: turquoise; */
+  text-decoration-line:underline;
   text-decoration-style: solid;
-  text-decoration-color:turquoise;
-  text-decoration-thickness: 3px;
+  text-decoration-color:teal;
+  text-decoration-thickness: 5px;
 }
 .spacer 
 {

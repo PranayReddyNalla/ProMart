@@ -4,7 +4,7 @@
   
  <div class="btn1">
    <button mat-button style="background-color:#2ba282" (click)="addrow(element)" >Add Product</button>&nbsp;&nbsp;
-   <button mat-flat-button (click)="deletemany()" [disabled]="selecteditems.length==0" >Bulk Delete</button>
+   <button mat-flat-button  color="primary" (click)="deletemany()"  [disabled]="selecteditems.length==0" >Bulk Delete</button>
   </div>
   <!-- <button mat-button (click)="addrow(element)" class="btn1">Add Product</button> -->
     <!-- <button mat-button  [disabled]="true" >Delete Many Products</button> -->
@@ -48,7 +48,7 @@
       Id
     </th>
     <td mat-cell *matCellDef="let element">
-      <a (click)="openpopup(element)">{{ element.id }}</a>
+      <a (click)="openpopup(element)">{{ element._id }}</a>
     </td>
   </ng-container>
 
@@ -73,11 +73,27 @@
     <td mat-cell *matCellDef="let element">{{ element.stock }}</td>
   </ng-container>
 
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef>image</th>
+    <td mat-cell *matCellDef="let element">{{ element.image }}</td>
+  </ng-container>
+
   <!-- Symbol Column -->
   <ng-container matColumnDef="brand">
     <th mat-header-cell *matHeaderCellDef>Brand</th>
     <td mat-cell *matCellDef="let element">{{ element.brand }}</td>
   </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Price</th>
+    <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="rating">
+    <th mat-header-cell *matHeaderCellDef>Rating</th>
+    <td mat-cell *matCellDef="let element">{{ element.rating }}</td>
+  </ng-container>
+
 
   <ng-container matColumnDef="Actions">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
