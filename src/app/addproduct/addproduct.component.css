@@ -1,41 +1,55 @@
 form {
     padding-top: 1rem;
-    text-align: center;
-    
-    
+    margin: 2rem;
+    columns: 3;
+    margin-left: 1px;
+    column-gap: 10px;
+    column-fill: balance;
+
+    margin: .5em 0;
+  
+
   }
 
-.head{
-    font-size: larger;
-    text-align: center;
+h1{
+  text-align: center;
+  text-decoration: underline;
     
-    font-family:'Segoe UI';
+    font-family: 'Open Sans';
     
 }
   
-  label {
+label {
     display: block;
     margin: .5em 0;
     text-align: center;
     color:darkblue;
     font-weight:normal;
   }
+
 .btn{
-  display: block;
-  margin: auto;
-  
-  
+margin-left: 65%;
+}
+.save{
+  margin-left: 80%;
+  padding: 10px 24px;
+  border-radius: 10px;
+  background-color:#2ba282;
 }
 mat-form-field{
   /* height:auto; */
   /* height: 50%; */
-  width: 85%;
-  /* border: 1px solid black; */
-  
+  width: 70%;
+  margin-left: 40px;
 }
+  
 
- ::ng-deep .mat-form-field-appearance-outline {
+  
+
+
+
+ /* ::ng-deep .mat-form-field-appearance-outline {
     transform: translateY(0.1em) scale(.85);
     border-radius: 200px;
 
-} 
+}  */

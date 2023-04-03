@@ -3,14 +3,14 @@
   <span class="title">PROMART</span>
   
 <div class="spacer"></div>
-<a *ngIf="this.userService.authorized" mat-button routerLinkActive="active " routerLink="/home"><mat-icon>home</mat-icon>Home</a>
-<a *ngIf="this.userService.authorized" mat-button routerLinkActive="active" routerLink="/products"> <mat-icon>inventory 2</mat-icon>Products</a>
+<a *ngIf="this.userService.authorized" mat-button [routerLinkActive]="'active'" routerLink="/home"><mat-icon>home</mat-icon>Home</a>
+<a *ngIf="this.userService.authorized" mat-button [routerLinkActive]="'active'" routerLink="/products"> <mat-icon>inventory 2</mat-icon>Products</a>
   
-<a *ngIf="this.userService.authorized" mat-button routerLinkActive="active" routerLink="/categories"><mat-icon>category</mat-icon>Categories</a>
+<a *ngIf="this.userService.authorized" mat-button [routerLinkActive]="'active'" routerLink="/categories"><mat-icon>category</mat-icon>Categories</a>
 <!-- <a *ngIf="this.userService.authorized"  mat-button routerLinkActive="active-link"  routerLink="/addcategories">Add Categories</a> -->
 <!-- <a mat-raised-button color="accent" routerLink="/login">Login</a> -->
-<a *ngIf="!this.userService.authorized" mat-button routerLinkActive="active" routerLink="/register">SignUp</a>&nbsp;
-<a *ngIf="!this.userService.authorized" mat-button routerLinkActive="active" routerLink="/login">Sign In</a>
+<a *ngIf="!this.userService.authorized" mat-button [routerLinkActive]="'active'" routerLink="/register">SignUp</a>&nbsp;
+<a *ngIf="!this.userService.authorized" mat-button [routerLinkActive]="'active'" routerLink="/login">Sign In</a>
 <a *ngIf="this.userService.authorized"  mat-button ><mat-icon>person</mat-icon>{{this.userService.user.username}}</a>&nbsp;
 
 <button *ngIf="this.userService.authorized" (click)="submit($event)" routerLink="/login" mat-raised-button style="background-color: turquoise;" mat-button  >Logout</button>

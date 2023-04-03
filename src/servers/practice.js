@@ -85,12 +85,14 @@ app.listen(PORT, () => console.log(`Express server currently running on port ${P
   
   app.post('/updateProduct', (req , res) =>{
     res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+    const id= req.body._id;
+    delete req.body._id;
     const users = database.collection('ProductList');
     try
     {
       users.updateOne
       (
-        {id :req.body._id},
+        {_id :new ObjectId(id)},
         {$set:req.body},
         { upsert: true }
       );
@@ -116,7 +118,7 @@ app.listen(PORT, () => console.log(`Express server currently running on port ${P
   app.post('/addProduct', (req , res) =>{
     res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
     const users = database.collection('ProductList');
-    users.insertOne({...req.body,is_status : true})
+    users.insertOne({...req.body,is_status : "true"})
     res.send({ status : "success"})
   })
  
