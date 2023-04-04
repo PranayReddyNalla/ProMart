@@ -25,7 +25,7 @@ export class MycategoriesrendererComponent implements OnInit, ICellRendererAngul
   edit(event:any){
     this.params.api.startEditingCell({
       rowIndex: this.params.node.rowIndex,
-      colKey: 'categorycode', 
+      colKey:'categorycode',
     
     })
     
